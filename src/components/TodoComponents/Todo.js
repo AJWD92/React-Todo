@@ -1,11 +1,23 @@
-import React from 'react'
+import React from 'react';
+import "./Todo.css";
 
-const Todo= props => {
+const Todo = props => {
+    let verboseClassName = "todo";
+    if (props.todo.complete) {
+        verboseClassName = verboseClassName + " complete";
+    }
+
+    const handleClick = () => {
+        props.toggleComplete(props.todo.id);
+    }
+
     return (
-        <div className={`task${props.task.completed ? ' completed': ''}`} onClick={() => props.toggleCompleted(props.task.id)}>
-            <p>{props.task.task}</p>
+        <div 
+            onClick={handleClick}  
+            className={verboseClassName}>
+            <p>{props.todo.task}</p>    
         </div>
     )
 }
 
-export default Todo
+export default Todo;

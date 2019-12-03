@@ -4,19 +4,39 @@ class TodoForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            newTask: ''
-        };
+            todoName: ""
+        }
     }
+
+    handleChanges = e => {
+        this.setState({
+            todoName: e.target.value
+        })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        if (this.state.todoName !== "") {
+            this.props.addTodo(this.state.todoName)
+            this.setState({
+                todoName: ""
+            })
+        }
+    }
+
     render() {
-        console.log('rendering form');
-        return (
-            <form onSubmit={this.props.handleSubmit}>
-                <label htmlFor='task'> New Task</label>
-                <input type='text' name='task' id='task' value={this.state.newTask} onChange={this.props.handleChanges} />
-                <button onClick={this.props.addTask}>Add</button>
-                <button onClick={this.props.filterCompleted}>Clear Completed Task</button>
+        console.log("rendering form")
+        return(
+            <form onSubmit={this.handleSubmit}>
+                <input 
+                    onChange={this.handleChanges}
+                    type="text"
+                    name="task"
+                    value={this.state.todoName}
+                 />
+                <button>Add</button>
             </form>
-        );
+        )
     }
 }
 
