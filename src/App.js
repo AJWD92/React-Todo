@@ -17,7 +17,9 @@ const data = [
 
 class App extends React.Component {
   state = {
-    todos: data
+    todos: data,
+    searchTerm: '',
+    searchResults: []
   }
 
 toggleComplete = todoId => {
